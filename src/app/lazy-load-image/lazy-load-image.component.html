@@ -1,0 +1,33 @@
+<p>lazy-load-image works!</p>
+<div class="">
+    <h1>The video element</h1>
+    <video [src]="url" autoplay controls width="600" height="400">
+        <source>
+    </video><br>
+    <video [src]="url" autoplay controls width="600" height="400">
+        <source>
+    </video><br>
+    <!-- <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img1" alt=""><br>
+    <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img2" alt=""><br>
+    <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img3" alt=""><br>
+    <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img4" alt=""> -->
+</div>
+<!-- <div id="img">
+    <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="url" alt="Angular"
+        loading="lazy" width="500" height="400">
+</div> -->
+
+<div *ngFor="let element of data;">
+    <div [id]="element.id" class="" style="padding-top: 400px;">
+        {{ element.id }}
+        <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="element.imgUrl" alt="Angular"
+            loading="lazy" width="500" height="400">
+
+        <div id="test"></div>
+
+    </div>
+
+    <!-- <div>
+    <img [lazyLoad]="element.url" alt="Angular" loading="lazy" width="500" height="400">
+  </div> -->
+</div>

@@ -1,0 +1,29 @@
+<div #imgDiv class="img">
+  <input type="file" (change)="onFileSelected($event)">
+  <button (click)="uploadVideo()">Upload Video</button>
+  <h1>The video element</h1>
+  <video [src]="url" autoplay controls width="600" height="400">
+    <source>
+  </video><br>
+  <video [src]="url" autoplay controls width="600" height="400">
+    <source>
+  </video><br>
+  <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img1" alt=""><br>
+  <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img2" alt=""><br>
+  <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img3" alt=""><br>
+  <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img4" alt="">
+
+</div>
+
+
+<div class="">
+  <div class="">test1</div>
+  <div class="">test2</div>
+  <div class="">test3</div>
+  <div id="test4" class="">
+    <div>
+      <img [lazyLoad]="url" alt="Angular" loading="lazy" width="500" height="400">
+    </div>
+
+  </div>
+</div>
