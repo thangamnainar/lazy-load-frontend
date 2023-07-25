@@ -12,10 +12,8 @@ export class VideoUploadComponent implements OnInit {
 
   selectedFile: File | null = null;
   url!: string;
-  img1:string = 'https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8='
-  img2:string = 'https://image.shutterstock.com/image-photo/large-beautiful-drops-transparent-rain-260nw-668593321.jpg'
-  img3:string = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMK2Hm4-jxPbQEf25HFZj0Pn2f0E0dxStXFS32nR52Cg11qhOirj-u2jzPL5EoAPvultM&usqp=CAU'
-  img4:string = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdGpSv0okC8bm-n5Ert8Bs3bxLkgKNLuhLgDfNNV_DmS5aNZPoNPIM-8E_DZ8CXQBBhpc&usqp=CAU'
+  data: any[] = [];
+
 
   constructor(
     private apiService: ApiServiceService,
@@ -23,8 +21,26 @@ export class VideoUploadComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.observeIntersection();
-    // this.getVideo()
+    // this.observeIntersection();
+    // let id =1;
+    // this.getVideo(id)
+    this.getAllVideoKeys()
+  }
+
+  getAllVideoKeys() {
+    this.apiService.getAllVideoKeys().subscribe({
+      next: (response: any) => {
+        this.data = response.data;
+        this.data.forEach((element: any) => {
+          setTimeout(() => {
+            this.observeIntersection(String(element.id))
+          }, 500);
+        });
+        console.log('response', response);
+      }, error(err) {
+        console.error('err', err);
+      },
+    })
   }
 
   onFileSelected(event: any) {
@@ -32,6 +48,7 @@ export class VideoUploadComponent implements OnInit {
     this.selectedFile = event.target.files[0];
     console.log('selectedFile', this.selectedFile);
   }
+
 
   uploadVideo() {
     if (this.selectedFile) {
@@ -48,49 +65,60 @@ export class VideoUploadComponent implements OnInit {
     }
   }
 
-  getVideo() {
-    // this.apiService.getVideo().subscribe({
-    //   next: (response: any) => {
-    //     this.url = response.data;
-    //     console.log('url', this.url);
-    //     console.log('response', response);
-    //     this.changeDetectorRef.detectChanges(); // Manually trigger change detection
-    //   },
-    //   error: (err) => {
-    //     console.log('err', err);
-    //   }
-    // });
+
+  getVideo(videoId: any) {
+    this.apiService.getVideo(videoId).subscribe({
+      next: (response: any) => {
+        this.url = response.data;
+        const index = this.data.findIndex(({ id }) => +videoId == id);
+        (index != -1 && this.data[index]) && (this.data[index].videoUrl = this.url);
+        // console.log('url', this.url);
+        console.log('response', response);
+        this.changeDetectorRef.detectChanges(); // Manually trigger change detection
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
   }
+
 
   // ts.file
-// Assuming you are inside a class called VideoUploadComponent
+  // Assuming you are inside a class called VideoUploadComponent
 
-options: IntersectionObserverInit = {
-  root: null,
-  threshold: 0.5,
-};
+  options: IntersectionObserverInit = {
+    root: null,
+    threshold: 0.5,
+  };
 
-get() {
-  console.log("inside of test4");
-}
-
-callback: IntersectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-  entries.forEach((entry: IntersectionObserverEntry) => {
-    if (entry.isIntersecting) {
-      this.get(); // Call the get() function
-      this.getVideo()
-      observer.unobserve(entry.target); // Unobserve the element to prevent multiple calls
-    }
-  });
-};
-
-observeIntersection() {
-  const targetElement = document.getElementById("test4");
-  if (targetElement) {
-    const observer = new IntersectionObserver(this.callback, this.options);
-    observer.observe(targetElement);
+  get(videoId: any) {
+    console.log(`inside of id ${videoId} `);
   }
-}
+
+  callback: IntersectionObserverCallback = (
+    entries: IntersectionObserverEntry[],
+    observer: IntersectionObserver
+  ) => {
+    entries.forEach((entry: IntersectionObserverEntry) => {
+      console.log('entry',entry);
+      if (entry.isIntersecting) {
+        const videoId = entry.target.id;
+        console.log('videoId.........................', videoId);
+        this.get(videoId); // Call the get() function with the correct videoId
+        this.getVideo(videoId)
+        observer.unobserve(entry.target); // Unobserve the element to prevent multiple calls
+      }
+    });
+  };
+
+  observeIntersection(videoId: string) {
+    const targetElement = document.getElementById('' + videoId);
+    // console.log('targetElement',targetElement);
+    if (targetElement) {
+      const observer = new IntersectionObserver(this.callback, this.options);
+      observer.observe(targetElement);
+    }
+  }
 
 
   // async createAWSStream(): Promise<S3ReadStream> {

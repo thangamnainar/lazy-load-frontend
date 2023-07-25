@@ -11,11 +11,6 @@ export class LazyLoadImageComponent implements OnInit {
   data: any[] = [];
   arr: any[] = [];
   url!: string;
-  img1: string = 'https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8='
-  img2: string = 'https://image.shutterstock.com/image-photo/large-beautiful-drops-transparent-rain-260nw-668593321.jpg'
-  img3: string = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMK2Hm4-jxPbQEf25HFZj0Pn2f0E0dxStXFS32nR52Cg11qhOirj-u2jzPL5EoAPvultM&usqp=CAU'
-  img4: string = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdGpSv0okC8bm-n5Ert8Bs3bxLkgKNLuhLgDfNNV_DmS5aNZPoNPIM-8E_DZ8CXQBBhpc&usqp=CAU'
-
 
   constructor(private apiService: ApiServiceService) { }
 
@@ -43,12 +38,11 @@ export class LazyLoadImageComponent implements OnInit {
     });
   }
 
-  options: IntersectionObserverInit = {
-    root: null,
-    threshold: 0.5,
-  };
+
 
   getImgae(imageId:any) {
+    console.log('inside of get function');
+    
     this.apiService.getImgae(imageId).subscribe({
       next: (response: any) => {
         this.url = response.data;
@@ -65,6 +59,11 @@ export class LazyLoadImageComponent implements OnInit {
     });
   }
 
+  options: IntersectionObserverInit = {
+    root: null,
+    threshold: 0.5,
+  };
+
   get(imageId: any) {
     console.log(`inside of id ${imageId} `);
   }
@@ -74,19 +73,19 @@ export class LazyLoadImageComponent implements OnInit {
     observer: IntersectionObserver
   ) => {
     entries.forEach((entry: IntersectionObserverEntry) => {
-      // console.log('entry',entry);
+      console.log('entry',entry);
       if (entry.isIntersecting) {
         const imageId = entry.target.id;
-        console.log('videoId.........................',imageId);
-        this.get(imageId); // Call the get() function with the correct videoId
+        console.log('imageIdimageId.........................',imageId);
+        this.get(imageId); 
         this.getImgae(imageId)
-        observer.unobserve(entry.target); // Unobserve the element to prevent multiple calls
+        observer.unobserve(entry.target); 
       }
     });
   };
 
   observeIntersection(imageId:string) {
-    // console.log('observeIntersection',videoId);
+    console.log('observeIntersection',imageId);
     // this.arr.push(videoId)
     // console.log('arr', this.arr);
     // console.log('videoId',videoId);

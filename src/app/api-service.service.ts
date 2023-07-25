@@ -24,4 +24,10 @@ export class ApiServiceService {
   getAllKeys() {
     return this.http.get('http://localhost:3000/video/getAllKeys')
   }
+
+  getAllVideoKeys() {
+    return this.http.get('http://localhost:3000/video/getAllVideoKeys')
+  }
+
+
 }

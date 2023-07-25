@@ -2,28 +2,17 @@
   <input type="file" (change)="onFileSelected($event)">
   <button (click)="uploadVideo()">Upload Video</button>
   <h1>The video element</h1>
-  <video [src]="url" autoplay controls width="600" height="400">
+
+  
+  <video src="data https://noqu.s3.amazonaws.com/1690268840072_video%20%281080p%29.mp4?AWSAccessKeyId=AKIAVNJBABBZGSGQ4TX3&Expires=1690286087&Signature=pCEoV3qFu%2F%2Fh0BKAAPplzOZlQ0Y%3D" autoplay controls width="600" height="400">
     <source>
-  </video><br>
-  <video [src]="url" autoplay controls width="600" height="400">
-    <source>
-  </video><br>
-  <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img1" alt=""><br>
-  <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img2" alt=""><br>
-  <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img3" alt=""><br>
-  <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="img4" alt="">
+  </video>
 
-</div>
-
-
-<div class="">
-  <div class="">test1</div>
-  <div class="">test2</div>
-  <div class="">test3</div>
-  <div id="test4" class="">
-    <div>
-      <img [lazyLoad]="url" alt="Angular" loading="lazy" width="500" height="400">
-    </div>
-
+  <div class="" *ngFor="let element of data">
+    <h1>{{element.id}}</h1>
+    <video [id]="element.id" [src]="element.videoUrl" autoplay controls width="600" height="400">
+      <source>
+    </video>
   </div>
+
 </div>
