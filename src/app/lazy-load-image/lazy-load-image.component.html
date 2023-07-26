@@ -1,5 +1,5 @@
 <p>lazy-load-image works!</p>
-<div class="" id="wrapper" >
+<div class="" id="wrapper">
     <h1>The video element</h1>
     <!-- <video [src]="url" autoplay controls width="600" height="400">
         <source>
@@ -10,13 +10,10 @@
 
     <div *ngFor="let element of data;">
         <div [id]="element.id" class="" style="padding-top: 400px;">
-            <h1> {{ element.id }}</h1>
-            <img defaultImage="https://static.thenounproject.com/png/2616533-200.png" [lazyLoad]="element.imgUrl"
-                alt="Angular" loading="lazy" width="500" height="400">
-    
-            <div id="test"></div>
-    
+          <h1>{{ element.id }}</h1>
+          <img defaultImage [lazyLoad]="element.imgUrl" alt="Angular" loading="lazy" width="500" height="400">
+          <div id="test"></div>
         </div>
-    </div>
+      </div>
+      
 </div>
-

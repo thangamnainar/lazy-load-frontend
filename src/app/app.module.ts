@@ -9,13 +9,15 @@ import { VideoUploadComponent } from './video-upload/video-upload.component';
 import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image';
 import { DeferModule } from 'primeng/defer';
 import { LazyLoadImageComponent } from './lazy-load-image/lazy-load-image.component';
+import { DefaultImageDirective } from './defaultImage-directives';
 
 @NgModule({
   declarations: [
     AppComponent,
     VideoPlayerComponent,
     VideoUploadComponent,
-    LazyLoadImageComponent
+    LazyLoadImageComponent,
+    DefaultImageDirective
   ],
   imports: [
     BrowserModule,
