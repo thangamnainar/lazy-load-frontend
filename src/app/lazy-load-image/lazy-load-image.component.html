@@ -1,19 +1,24 @@
-<p>lazy-load-image works!</p>
 <div class="" id="wrapper">
-    <h1>The video element</h1>
-    <!-- <video [src]="url" autoplay controls width="600" height="400">
-        <source>
-    </video><br>
-    <video [src]="url" autoplay controls width="600" height="400">
-        <source>
-    </video><br> -->
-
+  <div class="upload-image">
+    <h1>Lazy Load Image</h1>
+    <div *ngIf="!selectedImageFile ? 'style=display:none;':''" (click)="upload.click()" class="saveImage">Upload Image &nbsp;&nbsp; <i class="pi pi-upload"
+        style="font-size: 1rem"></i></div>
+      <span class="saveImage">{{selectedImageFile?.name}}</span>
+    <input type="file" style="display: none;" #upload [(customTwoWayBinding)]="selectedImageFile"
+      (customTwoWayBindingError)="onFileError($event)" multiple="false">
+    <p class="error-message" *ngIf="fileError">{{ fileError }}</p>
+    <button (click)="uploadImage()">Upload Image</button>
+  </div>
+  <div class="images">
     <div *ngFor="let element of data;">
-        <div [id]="element.id" class="" style="padding-top: 400px;">
-          <h1>{{ element.id }}</h1>
-          <img defaultImage [lazyLoad]="element.imgUrl" alt="Angular" loading="lazy" width="500" height="400">
-          <div id="test"></div>
-        </div>
+      <div [id]="element.id" class="">
+        <h1>{{ element.id }}</h1>
+        <img defaultImage [lazyLoad]="element.imgUrl" alt="Angular" loading="lazy">
+        <div id="test"></div>
       </div>
-      
+    </div>
+    <div class="videos">
+      <button> <a href="video"> Videos &nbsp; <i class="pi pi-arrow-right" style="font-size: 1rem"></i></a></button>
+    </div>
+  </div>
 </div>

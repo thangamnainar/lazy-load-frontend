@@ -10,14 +10,15 @@ import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyl
 import { DeferModule } from 'primeng/defer';
 import { LazyLoadImageComponent } from './lazy-load-image/lazy-load-image.component';
 import { DefaultImageDirective } from './defaultImage-directives';
-
+import { CustomTwoWayBindingDirective } from './TwoWayBinding';
 @NgModule({
   declarations: [
     AppComponent,
     VideoPlayerComponent,
     VideoUploadComponent,
     LazyLoadImageComponent,
-    DefaultImageDirective
+    DefaultImageDirective,
+    CustomTwoWayBindingDirective
   ],
   imports: [
     BrowserModule,

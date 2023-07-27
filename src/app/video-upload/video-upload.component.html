@@ -1,18 +1,21 @@
-<div #imgDiv class="img">
-  <input type="file" (change)="onFileSelected($event)">
-  <button (click)="uploadVideo()">Upload Video</button>
-  <h1>The video element</h1>
-
-  
-  <video src="data https://noqu.s3.amazonaws.com/1690268840072_video%20%281080p%29.mp4?AWSAccessKeyId=AKIAVNJBABBZGSGQ4TX3&Expires=1690286087&Signature=pCEoV3qFu%2F%2Fh0BKAAPplzOZlQ0Y%3D" autoplay controls width="600" height="400">
-    <source>
-  </video>
-
-  <div class="" *ngFor="let element of data">
-    <h1>{{element.id}}</h1>
-    <video [id]="element.id" [src]="element.videoUrl" autoplay controls width="600" height="400">
-      <source>
-    </video>
+<div class="" id="wrapper">
+  <span class="videos">
+    <button> <a href="image"> <i class="pi pi-arrow-left" style="font-size: 1rem"></i> &nbsp;Back</a></button>
+  </span>
+  <div class="upload-image">
+    <h1>Lazy Load Video</h1>
+    <div (click)="upload.click()"*ngIf="!selectedFile ? 'style=display:none;':''" class="saveImage">Upload Video &nbsp;&nbsp; <i class="pi pi-upload"
+        style="font-size: 1rem"></i></div>
+        <span class="saveImage">{{selectedFile?.name}}</span>
+    <input type="file" (change)="onFileSelected($event)" #upload style="display: none;">
+    <button (click)="uploadVideo()">Upload Video</button>
   </div>
-
+  <div class="images">
+    <div class="" *ngFor="let element of data">
+      <h1>{{element.id}}</h1>
+      <video [id]="element.id" [src]="element.videoUrl" autoplay controls width="600" height="400">
+        <source>
+      </video>
+    </div>
+  </div>
 </div>

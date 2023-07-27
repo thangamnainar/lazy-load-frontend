@@ -6,7 +6,7 @@ import { ApiServiceService } from '../api-service.service';
 @Component({
   selector: 'app-video-upload',
   templateUrl: './video-upload.component.html',
-  styleUrls: ['./video-upload.component.sass']
+  styleUrls: ['./video-upload.component.scss']
 })
 export class VideoUploadComponent implements OnInit {
 
@@ -63,6 +63,7 @@ export class VideoUploadComponent implements OnInit {
         }
       });
     }
+    this.selectedFile= null;
   }
 
 

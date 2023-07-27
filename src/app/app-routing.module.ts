@@ -6,7 +6,13 @@ import { LazyLoadImageComponent } from './lazy-load-image/lazy-load-image.compon
 
 const routes: Routes = [
   {
-    path:"",component:LazyLoadImageComponent
+    path:"",redirectTo:"image",pathMatch:"full"
+  },
+  {
+    path:"video",component:VideoUploadComponent
+  },
+  {
+    path:"image",component:LazyLoadImageComponent
   }
 ];
 
