@@ -16,12 +16,12 @@ export class CustomTwoWayBindingDirective {
         this.valueChange.emit(this.value);
       } else {
         // If the file is not valid, reset the input value to clear the selection
+        this.value = null;
+        this.valueChange.emit(this.value);
         const inputElement = document.querySelector('input[type="file"]') as HTMLInputElement;
         if (inputElement) {
           inputElement.value = '';
         }
-        this.value = null;
-        this.valueChange.emit(this.value);
 
         // Emit the error message
         const errorMessage = 'Invalid file selection. Please choose a valid image file (JPEG, JPG, PNG) within 100MB.';

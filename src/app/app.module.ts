@@ -11,6 +11,12 @@ import { DeferModule } from 'primeng/defer';
 import { LazyLoadImageComponent } from './lazy-load-image/lazy-load-image.component';
 import { DefaultImageDirective } from './defaultImage-directives';
 import { CustomTwoWayBindingDirective } from './TwoWayBinding';
+import { DynamicDialogFormComponent } from './dynamic-dialog-form/dynamic-dialog-form.component';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CheckNumber } from './input-type-directives.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,14 +24,21 @@ import { CustomTwoWayBindingDirective } from './TwoWayBinding';
     VideoUploadComponent,
     LazyLoadImageComponent,
     DefaultImageDirective,
-    CustomTwoWayBindingDirective
+    CustomTwoWayBindingDirective,
+    DynamicDialogFormComponent,
+    CheckNumber,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     LazyLoadImageModule,
-    DeferModule
+    DeferModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }],
   bootstrap: [AppComponent]

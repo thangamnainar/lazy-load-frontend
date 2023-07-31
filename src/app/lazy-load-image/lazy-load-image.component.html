@@ -1,6 +1,7 @@
 <div class="" id="wrapper">
   <div class="upload-image">
     <h1>Lazy Load Image</h1>
+    <input type="text" CheckNumber>
     <div *ngIf="!selectedImageFile ? 'style=display:none;':''" (click)="upload.click()" class="saveImage">Upload Image &nbsp;&nbsp; <i class="pi pi-upload"
         style="font-size: 1rem"></i></div>
       <span class="saveImage">{{selectedImageFile?.name}}</span>

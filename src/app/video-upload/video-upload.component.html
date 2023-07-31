@@ -1,3 +1,5 @@
+<video src="https://d26spian1wseuc.cloudfront.net/video2.mp4"  controls width="600" height="400">
+</video>
 <div class="" id="wrapper">
   <span class="videos">
     <button> <a href="image"> <i class="pi pi-arrow-left" style="font-size: 1rem"></i> &nbsp;Back</a></button>
@@ -14,7 +16,6 @@
     <div class="" *ngFor="let element of data">
       <h1>{{element.id}}</h1>
       <video [id]="element.id" [src]="element.videoUrl" autoplay controls width="600" height="400">
-        <source>
       </video>
     </div>
   </div>

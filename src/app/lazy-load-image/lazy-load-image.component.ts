@@ -50,11 +50,11 @@ export class LazyLoadImageComponent implements OnInit {
       next: (response: any) => {
         this.url = response.data;
         const index = this.data.findIndex(({ id }) => +imageId == id);
-        console.log('index', index);
-        console.log('this.data', this.data);
+        // console.log('index', index);
+        // console.log('this.data', this.data);
         (index != -1 && this.data[index]) && (this.data[index].imgUrl = this.url);
         // console.log('url', this.url);
-        console.log('response', response);
+        // console.log('response', response);
       },
       error: (err) => {
         console.log('err', err);
@@ -76,10 +76,10 @@ export class LazyLoadImageComponent implements OnInit {
     observer: IntersectionObserver
   ) => {
     entries.forEach((entry: IntersectionObserverEntry) => {
-      console.log('entry', entry);
+      // console.log('entry', entry);
       if (entry.isIntersecting) {
         const imageId = entry.target.id;
-        console.log('imageIdimageId.........................', imageId);
+        // console.log('imageIdimageId.........................', imageId);
         this.get(imageId);
         this.getImgae(imageId)
         observer.unobserve(entry.target);
@@ -112,12 +112,21 @@ export class LazyLoadImageComponent implements OnInit {
           console.log('error', error);
         }
       });
-      this.selectedImageFile=null;
     }
+    this.selectedImageFile=null;
   }
 
   onFileError(errorMessage: any) {
-    this.fileError = errorMessage;
+    console.warn('errorMessage',errorMessage);
+    console.error('selectedImageFile',this.selectedImageFile);
+    if(this.selectedImageFile){
+      console.log('inside of if');
+      return this.fileError = null;
+    }else{
+      console.log('inside of else');
+      return this.fileError = errorMessage;      
+
+    }
   }
 
 
