@@ -64,7 +64,7 @@ export class LazyLoadImageComponent implements OnInit {
 
   options: IntersectionObserverInit = {
     root: null,
-    threshold: 0.5,
+    threshold: 1,
   };
 
   get(imageId: any) {
@@ -76,7 +76,7 @@ export class LazyLoadImageComponent implements OnInit {
     observer: IntersectionObserver
   ) => {
     entries.forEach((entry: IntersectionObserverEntry) => {
-      // console.log('entry', entry);
+      console.warn('entry', entry);
       if (entry.isIntersecting) {
         const imageId = entry.target.id;
         // console.log('imageIdimageId.........................', imageId);
@@ -100,6 +100,7 @@ export class LazyLoadImageComponent implements OnInit {
     }
   }
   uploadImage() {
+    console.log('inside of upload image');
     if (this.selectedImageFile) {
       console.log('selectedImageFile', this.selectedImageFile);
       const formData = new FormData();
